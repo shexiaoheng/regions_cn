@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# 实验类，有 bug，仅留作纪念
 class TestBs4:
 
     def test_bs4(self):
@@ -38,16 +39,13 @@ class TestBs4:
                     provinces = {"province_name": province_t.text, "city_list": citys}
                     data.append(provinces)
         result = json.dumps(data, ensure_ascii=False, indent=4)
-        file = open('data.json', 'w', encoding='utf-8')
+        file = open('json_data.json', 'w', encoding='utf-8')
         file.write(result)
         file.close()
 
     def test_write(self):
-        str = {"name": "佘志恒", "age": 18}
-        data = json.dumps(str, ensure_ascii=False)
+        test_str = [{"name": "佘小恒", "sex": "男"}, {"name": "shexiaoheng", "sex": "man"}]
+        data = json.dumps(test_str, ensure_ascii=False)
         file = open('demo.json', 'w', encoding='utf-8')
         file.write(data)
         file.close()
-
-
-
