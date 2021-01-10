@@ -20,16 +20,29 @@ class CountyManage(BaseManage):
                         county_url = self.base_url + county_url_path
                         county_soup = self.get_base_soup(county_url)
                         county_trs = county_soup.select('.countytr')
-                        for county_tr in county_trs:
-                            county_td = county_tr.find_all('td')
-                            c_id = county_td[0].text
-                            name = county_td[1].text
-                            if county_td[0].a is not None:
-                                url = self.base_url + county_td[0].a['href']
-                            else:
-                                url = ""
-                            county = {"id": c_id, "name": name, "url": url}
-                            county_data_list.append(county)
+                        if len(county_trs) > 0:
+                            for county_tr in county_trs:
+                                county_td = county_tr.find_all('td')
+                                c_id = county_td[0].text
+                                name = county_td[1].text
+                                if county_td[0].a is not None:
+                                    url = self.base_url + county_td[0].a['href']
+                                else:
+                                    url = ""
+                                county = {"id": c_id, "name": name, "url": url}
+                                county_data_list.append(county)
+                        else:
+                            town_trs = county_soup.select('.towntr')
+                            for town_tr in town_trs:
+                                town_td = town_tr.find_all('td')
+                                t_id = town_td[0].text
+                                name = town_td[1].text
+                                if town_td[0].a is not None:
+                                    url = self.base_url + town_td[0].a['href']
+                                else:
+                                    url = ""
+                                county = {"id": t_id, "name": name, "url": url}
+                                county_data_list.append(county)
         return county_data_list
 
     def save_county_data(self, county_list):

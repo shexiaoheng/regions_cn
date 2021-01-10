@@ -1,5 +1,20 @@
-### 获取中国行政区数据
+## 获取中国行政区数据
 
-数据源自[国家统计局](http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/)
+数据源自[国家统计局2020年数据](http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2020/)
 
-正在完善中。。
+### data_manage
+抓取数据的类
+
+### json_data
+抓取的数据保存后的json文件
+data_back.json 数据为三维数组，是用 test_bs4.py 的代码抓取后，手动修改问题数据后的完整数据，可以直接使用
+
+### test_case
+测试类
+test_bs4.py 为初始实验类，有bug，请忽略
+
+**目前只抓取前三级，省/直辖市/自治区、地级市/市辖区/自治州、县/区/市**
+
+**因为广东省东莞市、中山市和海南省儋州市下面直接到镇/街道，所以这三个市的三级数据直接获取镇/街道数据**
+
+后面有时间还会继续完善
